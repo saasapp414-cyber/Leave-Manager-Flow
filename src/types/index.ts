@@ -61,7 +61,7 @@ export interface LeaveRequest {
   hrComment?: string;
   attachmentURL?: string;
   isHalfDay: boolean;
-  halfDayPeriod?: 'morning' | 'afternoon' | null;
+  halfDayPeriod?: 'morning' | 'afternoon' | '';
   createdAt: string;
   updatedAt: string;
   organizationId: string;

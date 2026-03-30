@@ -33,7 +33,7 @@ export default function LeavesPage() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [form, setForm] = useState({
     leaveType: 'annual' as LeaveType,
-    startDate: '', endDate: '', reason: '', isHalfDay: false, halfDayPeriod: 'morning' as 'morning'|'afternoon' | null,
+    startDate: '', endDate: '', reason: '', isHalfDay: false, halfDayPeriod: 'morning' as 'morning'|'afternoon',
   });
 
   const days = form.startDate && form.endDate ? calculateWorkingDays(form.startDate, form.endDate) : 0;
@@ -68,7 +68,7 @@ export default function LeavesPage() {
         status: 'pending',
         managerId: user.managerId || user.uid,
         isHalfDay: form.isHalfDay,
-        halfDayPeriod: form.isHalfDay ? form.halfDayPeriod : null,
+        halfDayPeriod: form.isHalfDay ? form.halfDayPeriod : '',
         organizationId: user.organizationId,
       });
       toast.success('Leave request submitted!');
@@ -178,7 +178,7 @@ export default function LeavesPage() {
               className="w-4 h-4 rounded accent-brand-500" />
             <label htmlFor="halfday" className="text-sm text-slate-300">Half Day</label>
             {form.isHalfDay && (
-              <Select options={[{value:'morning',label:'Morning'},{value:'afternoon',label:'Afternoon'}]}
+              <Select options={[{value:'morning',label:'Morning'},{value:'afternoon',label:'Afternoon'}, {value:"",label:'All'}]}
                 value={form.halfDayPeriod}
                 onChange={e => setForm({...form, halfDayPeriod: e.target.value as 'morning'|'afternoon'})}
                 className="flex-1" />
